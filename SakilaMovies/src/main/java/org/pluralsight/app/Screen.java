@@ -26,23 +26,31 @@ public class Screen {
         ArrayList<Actor> actors = dataManager.getActorByLastName(actorFN, actorLN);
 
         //displaying all actors with userInput last name
-        System.out.println("Here is a list of actors with name " + actorFN + " " + actorLN);
+        System.out.println("Here is a list of actors with name: " + actorFN + " " + actorLN);
         for (Actor actor : actors)
             System.out.println(actor);
 
-        //fix code to query for fn and ln
+        //searches films actor in by actor id
+        System.out.println("Type in the actor ID to display movies: ");
+        int actorID = scanner.nextInt();
+        scanner.nextLine(); //clear buffer
 
-        //searches actor by first name
+        //searches actor based on actor id
         Actor actorToQuery = null;
         for (Actor actor : actors)
-            if (actor.getFirstName().equalsIgnoreCase(actorFN)) actorToQuery = actor;
+            if (actorID == actor.getActorID()) actorToQuery = actor;
 
+        //query films of actor
+        ArrayList<Film> films;
         if (actorToQuery != null) {
-            ArrayList<Film> films = dataManager.getFilmsByActor(actorToQuery);
-            for (Film film : films)
-                System.out.println(film);
+            films = dataManager.getFilmsByActor(actorToQuery);
         } else {
-            System.out.println("Sorry, that is not a valid actor");
+            System.out.println("Sorry, That is not a valid actor");
+            return;
         }
+
+        //display films actor was in
+        for (Film film : films)
+            System.out.println(film);
     }
 }

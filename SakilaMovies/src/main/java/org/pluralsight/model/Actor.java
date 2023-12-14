@@ -1,7 +1,6 @@
 package org.pluralsight.model;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class Actor {
     private final int actorID;
@@ -35,7 +34,7 @@ public class Actor {
 
     @Override
     public String toString() {
-        return String.format("ID: %5d, Name: %-20s %-20s, Last Update: %s",
+        return String.format("ID: %4d, Name: %-20s %-20s, Last Update: %s",
                 actorID, firstName, lastName, timestamp);
     }
 }
